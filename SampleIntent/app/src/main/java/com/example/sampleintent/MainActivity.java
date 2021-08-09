@@ -3,6 +3,7 @@ package com.example.sampleintent;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton1Clicked(View v) {
-        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+        Intent intent = new Intent();
+
+        ComponentName name = new ComponentName("com.example.sampleintent", "com.example.sampleintent.MenuActivity");
+
+        intent.setComponent(name);
         startActivityForResult(intent, REQUEST_CODE_MENU);
     }
 }
