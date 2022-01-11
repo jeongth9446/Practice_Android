@@ -39,6 +39,7 @@ fun MessageCard(msg: Message) {
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             Text(text = msg.author)
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = msg.body)
         }
     }
