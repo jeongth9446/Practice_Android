@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.example.exmaterialdesign.ui.theme.ExMaterialDesignTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 
 data class Message(val author: String, val body: String)
 
@@ -58,7 +59,13 @@ fun MessageCard(msg: Message) {
 
             // Add a vertical space between the author and message texts
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = msg.body)
+            Surface(shape = MaterialTheme.shapes.medium, elevation = 1.dp) {
+                Text(
+                    text = msg.body,
+                    modifier = Modifier.padding(all = 4.dp),
+                    style = MaterialTheme.typography.body2
+                )
+            }
         }
     }
 }
