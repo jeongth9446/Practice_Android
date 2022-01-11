@@ -18,8 +18,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.exmaterialdesign.ui.theme.ExMaterialDesignTheme
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import com.example.compose.tutorial.SampleData
 
 data class Message(val author: String, val body: String)
 
@@ -28,8 +31,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ExMaterialDesignTheme {
-                MessageCard(Message("Android", "Jetpack Compose"))
+                //MessageCard(Message("Android", "Jetpack Compose"))
+                Conversation(SampleData.conversationSample)
             }
+        }
+    }
+}
+@Composable
+fun Conversation(messages: List<Message>) {
+    LazyColumn {
+        items(messages) { message ->
+            MessageCard(message)
         }
     }
 }
@@ -80,8 +92,9 @@ fun MessageCard(msg: Message) {
 @Composable
 fun PreviewMessageCard() {
     ExMaterialDesignTheme {
-        MessageCard(
+        /*MessageCard(
             msg = Message("Colleague", "Take a look at Jetpack Compose, it's great!")
-        )
+        )*/
+        Conversation(SampleData.conversationSample)
     }
 }
