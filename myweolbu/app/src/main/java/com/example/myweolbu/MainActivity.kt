@@ -3,6 +3,7 @@ package com.example.myweolbu
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -39,7 +40,8 @@ fun MainScreen() {
     val tabs = listOf(
         TabItem.Music,
         TabItem.Movies,
-        TabItem.Books
+        TabItem.Books,
+        TabItem.Naver
     )
     val pagerState = rememberPagerState()
     Scaffold(
@@ -48,7 +50,7 @@ fun MainScreen() {
         }
     ) {
         Column {
-            TabsContent(tabs = tabs, pagerState = pagerState
+            TabsContent(tabs = tabs, pagerState = pagerState)
         }
     }
 }
@@ -81,9 +83,9 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState) {
         }) {
         tabs.forEachIndexed { index, tab ->
             // OR Tab()
-            LeadingIconTab(
-                icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = "") },
+            Tab(
                 text = { Text(tab.title) },
+                icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = "") },
                 selected = pagerState.currentPage == index,
                 onClick = {
                     scope.launch {
@@ -104,6 +106,7 @@ fun TabsPreview() {
         TabItem.Music,
         TabItem.Movies,
         TabItem.Books
+
     )
     val pagerState = rememberPagerState()
     Tabs(tabs = tabs, pagerState = pagerState)
